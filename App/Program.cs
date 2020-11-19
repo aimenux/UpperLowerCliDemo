@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace App
@@ -19,7 +20,8 @@ namespace App
                 {
                     config.AddCommandLine(args);
                     config.AddEnvironmentVariables();
-                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                    config.SetBasePath(Directory.GetCurrentDirectory());
+                    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
                 })
                 .ConfigureLogging((hostingContext, loggingBuilder) =>
                 {
@@ -47,7 +49,7 @@ namespace App
             services.AddSingleton(serviceProvider =>
             {
                 var loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
-                return loggerFactory.CreateLogger("SharpDocxDemo");
+                return loggerFactory.CreateLogger("UpperLowerCliDemo");
             });
         }
     }
