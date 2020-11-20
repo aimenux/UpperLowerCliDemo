@@ -4,6 +4,8 @@
 Playing with net core global tools
 ```
 > In this demo, i m building a dummy global cli tool upperizing or lowerizing input characters
+>
+> The tool is based on one main command with two options :
 > - Use option `-u` to upperize input characters
 > - Use option `-l` to lowerize input characters
 >
